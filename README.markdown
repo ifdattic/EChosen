@@ -43,3 +43,8 @@ Resources
 ---------
 
 * [Chosen JavaScript plugin (contains demo)](http://harvesthq.github.com/chosen/ "Chosen JavaScript plugin")
+
+Notes
+-----
+
+* For your convenience extension contains Chosen JavaScript plugin. Hovewer to make sure you have the newest plugin you should download it from [Chosen JavaScript plugin Git repository](https://github.com/harvesthq/chosen/ "Chosen JavaScript plugin Git repository")
