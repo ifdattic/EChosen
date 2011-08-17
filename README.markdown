@@ -1,7 +1,7 @@
 EChosen
 =======
 
-EChosen is an extension for Yii framework. This extension is a wrapper for [Chosen JavaScript plugin](http://harvesthq.github.com/chosen/ "Chosen JavaScript plugin") which makes long, unwieldy select boxes much more user-friendly. It is currently available in both jQuery and Prototype flavors.
+**EChosen** is an extension for Yii framework. This extension is a wrapper for [Chosen JavaScript plugin](http://harvesthq.github.com/chosen/ "Chosen JavaScript plugin") which makes long, unwieldy select boxes much more user-friendly. It is currently available in both jQuery and Prototype flavors.
 
 Requirements
 ------------
