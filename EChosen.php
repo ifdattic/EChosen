@@ -5,7 +5,7 @@
  * @author Andrius Marcinkevicius <andrew.web@ifdattic.com>
  * @copyright Copyright &copy; 2011 Andrius Marcinkevicius
  * @license Licensed under MIT license. http://ifdattic.com/MIT-license.txt
- * @version 1.0
+ * @version 1.5
  */
 
 /**
@@ -21,7 +21,7 @@ class EChosen extends CWidget
   public $target = '.chzn-select';
   
   /**
-   * @var boolean should jQuery plugin should be used.
+   * @var boolean use jQuery plugin, otherwise use Prototype plugin.
    */
   public $useJQuery = true;
   
@@ -31,13 +31,20 @@ class EChosen extends CWidget
   public $debug = false;
   
   /**
-   * Apply chosen plugin to select boxes.
+   * @var array native Chosen plugin options.
+   */
+  public $options = array();
+  
+  /**
+   * Apply Chosen plugin to select boxes.
    */
   public function run()
   {
     // Publish extension assets
     $assets = Yii::app()->getAssetManager()->publish( Yii::getPathOfAlias(
       'ext.EChosen' ) . '/assets' );
+    
+    // Register extension assets
     $cs = Yii::app()->getClientScript();
     $cs->registerCssFile( $assets . '/chosen.css' );
     
@@ -46,15 +53,22 @@ class EChosen extends CWidget
     if( $this->debug )
       $ext = '.js';
     
+    // Use jQuery plugin version
     if( $this->useJQuery )
     {
-      $cs->registerScriptFile( $assets . '/chosen.jquery' . $ext );
+      // Register jQuery scripts
+      $options = CJavaScript::encode( $this->options );
+      $cs->registerScriptFile( $assets . '/chosen.jquery' . $ext,
+        CClientScript::POS_END );
       $cs->registerScript( 'chosen',
-        "$( '{$this->target}' ).chosen();" );
+        "$( '{$this->target}' ).chosen({$options});", CClientScript::POS_END );
     }
+    // Use Prototype plugin version
     else
     {
-      $cs->registerScriptFile( $assets . '/chosen.proto' . $ext );
+      // Register Prototype scripts
+      $cs->registerScriptFile( $assets . '/chosen.proto' . $ext,
+        CClientScript::POS_END );
     }
   }
 }
