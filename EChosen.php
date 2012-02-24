@@ -5,7 +5,7 @@
  * @author Andrius Marcinkevicius <andrew.web@ifdattic.com>
  * @copyright Copyright &copy; 2011 Andrius Marcinkevicius
  * @license Licensed under MIT license. http://ifdattic.com/MIT-license.txt
- * @version 1.5
+ * @version 1.5.1
  */
 
 /**
@@ -36,6 +36,11 @@ class EChosen extends CWidget
   public $options = array();
   
   /**
+   * @var int script registration position.
+   */
+  public $scriptPosition = CClientScript::POS_END;
+  
+  /**
    * Apply Chosen plugin to select boxes.
    */
   public function run()
@@ -59,16 +64,16 @@ class EChosen extends CWidget
       // Register jQuery scripts
       $options = CJavaScript::encode( $this->options );
       $cs->registerScriptFile( $assets . '/chosen.jquery' . $ext,
-        CClientScript::POS_END );
+        $this->scriptPosition );
       $cs->registerScript( 'chosen',
-        "$( '{$this->target}' ).chosen({$options});", CClientScript::POS_END );
+        "$( '{$this->target}' ).chosen({$options});", CClientScript::POS_READY );
     }
     // Use Prototype plugin version
     else
     {
       // Register Prototype scripts
       $cs->registerScriptFile( $assets . '/chosen.proto' . $ext,
-        CClientScript::POS_END );
+        $this->scriptPosition );
     }
   }
 }
