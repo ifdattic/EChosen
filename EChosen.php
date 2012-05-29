@@ -65,7 +65,7 @@ class EChosen extends CWidget
       $options = CJavaScript::encode( $this->options );
       $cs->registerScriptFile( $assets . '/chosen.jquery' . $ext,
         $this->scriptPosition );
-      $cs->registerScript( 'chosen',
+      $cs->registerScript( __CLASS__.'#'.$this->id,
         "$( '{$this->target}' ).chosen({$options});", CClientScript::POS_READY );
     }
     // Use Prototype plugin version
