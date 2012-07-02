@@ -46,8 +46,7 @@ class EChosen extends CWidget
   public function run()
   {
     // Publish extension assets
-    $assets = Yii::app()->getAssetManager()->publish( Yii::getPathOfAlias(
-      'ext.EChosen' ) . '/assets' );
+    $assets = Yii::app()->getAssetManager()->publish(dirname(__FILE__) . '/assets' );
     
     // Register extension assets
     $cs = Yii::app()->getClientScript();
